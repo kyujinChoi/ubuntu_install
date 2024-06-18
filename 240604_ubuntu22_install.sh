@@ -7,7 +7,8 @@ folder=${HOME}/Documents/Ubuntu22_install
 sudo apt-get install -y wireshark
 sudo add-apt-repository universe
 sudo apt update 
-sudo apt install -y python2 cmake python3-pip gparted cifs-utils net-tools git ibus-hangul htop vim locales
+sudo apt install -y python2 cmake python3-pip gparted cifs-utils net-tools git ibus-hangul htop vim locales mlocate dbus-x11 simplescreenrecorder
+
 
 sudo /bin/su -c "echo 'net.core.rmem_max = 10485760' >> /etc/sysctl.conf"
 sudo /bin/su -c "echo 'net.core.rmem_default = 10485760' >> /etc/sysctl.conf"
@@ -128,6 +129,7 @@ echo "** Install libLAS-1.8.1 successfully"
 ## ros(humble) install
 echo "** ros2 humble install"
 sudo apt update && sudo apt install -y curl gnupg lsb-release
+sudo apt install -y python3-rosdep2
 sudo curl -sSL https://raw.githubusercontent.com/ros/rosdistro/master/ros.key -o /usr/share/keyrings/ros-archive-keyring.gpg
 echo "deb [arch=$(dpkg --print-architecture) signed-by=/usr/share/keyrings/ros-archive-keyring.gpg] http://packages.ros.org/ros2/ubuntu $(. /etc/os-release && echo $UBUNTU_CODENAME) main" | sudo tee /etc/apt/sources.list.d/ros2.list > /dev/null
 sudo apt update
@@ -137,7 +139,9 @@ sudo apt-get -y install gazebo
 sudo apt install -y ros-humble-gazebo-ros
 sudo apt install -y ros-humble-gazebo-ros-pkgs
 sudo apt install -y ros-humble-gazebo-ros2-control
-sudo apt install -y dbux-x11
+sudo apt install -y libyaml-cpp-dev
+sudo apt install -y ros-humble-rosbag2-storage-mcap
+
 mkdir -p ~/ros2_ws/src
 cd ~/ros2_ws
 sudo rosdep init
